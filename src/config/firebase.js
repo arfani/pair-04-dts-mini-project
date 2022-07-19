@@ -64,5 +64,6 @@ const logoutUser = () => {
 export {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    auth
 }
