@@ -1,3 +1,4 @@
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,9 +14,6 @@ import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
-  typography: {
-    fontFamily: "Inter",
-  },
   palette: {
     type: "light",
     primary: {
@@ -28,10 +26,34 @@ const theme = createTheme({
 });
 
 export default function Header() {
+  const [navColor, setNavColor] = React.useState("rgba(20, 20, 20, 0.5)");
+  const navRef = React.useRef();
+  navRef.current = navColor;
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 250;
+      if (show) {
+        setNavColor("rgba(20, 20, 20)");
+      } else {
+        setNavColor("rgba(20, 20, 20, 0.5)");
+      }
+    };
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar
+          position="fixed"
+          style={{
+            boxShadow: "none",
+            backgroundColor: navRef.current,
+          }}
+        >
           <Toolbar>
             <IconButton
               size="large"

@@ -1,37 +1,42 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
+import * as fetchMovies from "../services/fetchMovies";
 import "./styles/carousel.css";
 
 function Item(props) {
   return (
-    <div className="carousel__d">
-      <img src="" alt="" className="caro_img" />
-      <div className="caro__details">
-        <h6 className="cast__name"></h6>
-        <h6 className="character"></h6>
+    <div
+      className="carousel_image"
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${props.item.backdrop_path})`,
+      }}
+    >
+      <div className="nav">
+        <h3>{props.item.title}</h3>
+        <h4>{props.item.overview}</h4>
+        <div className="back__btn">
+          <button>Play</button>
+        </div>
       </div>
     </div>
   );
 }
 
-export default function CustomCarousel(props) {
-  var items = [
-    {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!",
-    },
-    {
-      name: "Random Name #2",
-      description: "Hello World!",
-    },
-  ];
+export default function CustomCarousel() {
+  const [movies, setMovies] = React.useState([]);
+
+  React.useEffect(() => {
+    fetchMovies.getTrendings().then((data) => {
+      setMovies(data);
+    });
+  }, []);
 
   return (
-    <Carousel>
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
+    <Carousel animation="slide" indicators={false}>
+      {movies.map((item, index) => (
+        <Item key={index} item={item} />
       ))}
     </Carousel>
   );
