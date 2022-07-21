@@ -9,7 +9,7 @@ function Item(props) {
     <div
       className="carousel_image"
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${props.item.backdrop_path})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${props.item.poster_path})`,
       }}
     >
       <div className="nav">
