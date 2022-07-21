@@ -82,7 +82,7 @@ export async function getNowPlayingMovies() {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&page=1`
     );
-    return data.results.slice(0, 5);
+    return data.results.slice(0, 6);
   } catch (error) {
     return [];
   }
@@ -93,7 +93,7 @@ export async function getNowPlayingSeries() {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/tv/on_the_air?api_key=${key}&page=1`
     );
-    return data.results.slice(0, 5);
+    return data.results.slice(0, 6);
   } catch (error) {
     return [];
   }
@@ -104,7 +104,7 @@ export async function getTopRatedMovies() {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&page=1`
     );
-    return data.results.slice(0, 5);
+    return data.results.slice(0, 6);
   } catch (error) {
     return [];
   }

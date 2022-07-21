@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Grid } from "@mui/material";
 
 import * as fetchMovies from "../services/fetchMovies";
 import "./styles/carousel.css";
@@ -10,7 +9,7 @@ function Item(props) {
     <div
       className="carousel_image"
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${props.item.backdrop_path})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${props.item.poster_path})`,
       }}
     >
       <div className="nav">
