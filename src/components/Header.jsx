@@ -12,6 +12,9 @@ import RedeemIcon from "@mui/icons-material/Redeem";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -26,9 +29,24 @@ const theme = createTheme({
 });
 
 export default function Header() {
+  let navigate = useNavigate();
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [navColor, setNavColor] = React.useState("rgba(20, 20, 20, 0.5)");
   const navRef = React.useRef();
   navRef.current = navColor;
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   React.useEffect(() => {
     const handleScroll = () => {
       const show = window.scrollY > 250;
@@ -67,7 +85,13 @@ export default function Header() {
               MOVIES
             </Typography>
             <Stack direction={"row"} sx={{ flexGrow: 1 }} spacing={1}>
-              <Button sx={{ textTransform: "none" }} color="inherit">
+              <Button
+                sx={{ textTransform: "none" }}
+                color="inherit"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 Home
               </Button>
               <Button sx={{ textTransform: "none" }} color="inherit">
@@ -93,10 +117,37 @@ export default function Header() {
               <IconButton aria-label="gift" color="inherit">
                 <NotificationsIcon />
               </IconButton>
-              <IconButton aria-label="gift" color="inherit">
+              <IconButton
+                aria-label="gift"
+                color="inherit"
+                onClick={handleMenu}
+              >
                 <Avatar sx={{ width: 24, height: 24 }}>R</Avatar>
               </IconButton>
             </Stack>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Log Out
+              </MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </Box>

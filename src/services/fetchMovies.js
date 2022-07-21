@@ -120,3 +120,14 @@ export async function getTrailerMovies(id) {
     return [];
   }
 }
+
+export async function getMovieDetail(id) {
+  try {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`
+    );
+    return data;
+  } catch (error) {
+    return {};
+  }
+}
