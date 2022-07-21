@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Grid } from "@mui/material";
 
 import * as fetchMovies from "../services/fetchMovies";
 import "./styles/carousel.css";
