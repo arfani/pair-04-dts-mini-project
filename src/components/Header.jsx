@@ -30,15 +30,15 @@ const theme = createTheme({
 
 export default function Header() {
   let navigate = useNavigate();
-  const [auth, setAuth] = React.useState(true);
+  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [navColor, setNavColor] = React.useState("rgba(20, 20, 20, 0.5)");
   const navRef = React.useRef();
   navRef.current = navColor;
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
