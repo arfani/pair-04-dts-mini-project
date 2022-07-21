@@ -3,11 +3,13 @@ import Home from "./components/home";
 import Footer from "./components/footer";
 import { Routes, Route } from "react-router-dom";
 import FormLogin from "./components/forms";
-import MainPage from "./pages/main";
+import MainPage from "./pages/Main";
+import DetailMovie from "./pages/DetailMovie";
 function App() {
   return (
     <>
-      <MainPage />
+      {/* <MainPage /> */}
+      <DetailMovie />
     </>
   );
 }

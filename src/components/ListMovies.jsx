@@ -1,16 +1,11 @@
 import React from "react";
-import { Card, Grid, CardHeader } from "@mui/material";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
+import { Card, Grid } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import {
   getNowPlayingMovies,
   getNowPlayingSeries,
   getTopRatedMovies,
 } from "../services/fetchMovies";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function ListMovies({ typeMovies }) {
   const [movies, setMovies] = React.useState([]);
@@ -34,7 +29,7 @@ export default function ListMovies({ typeMovies }) {
   return (
     <Grid container spacing={2}>
       {movies.map((item, index) => (
-        <Grid item md={2} key={index}>
+        <Grid item md={2} sm={4} xs={6} key={index}>
           <Card variant="outlined">
             <CardMedia
               component="img"

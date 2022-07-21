@@ -12,7 +12,8 @@ import RedeemIcon from "@mui/icons-material/Redeem";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
 const theme = createTheme({
   palette: {
     type: "light",
@@ -26,9 +27,23 @@ const theme = createTheme({
 });
 
 export default function Header() {
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [navColor, setNavColor] = React.useState("rgba(20, 20, 20, 0.5)");
   const navRef = React.useRef();
   navRef.current = navColor;
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   React.useEffect(() => {
     const handleScroll = () => {
       const show = window.scrollY > 250;
@@ -93,10 +108,31 @@ export default function Header() {
               <IconButton aria-label="gift" color="inherit">
                 <NotificationsIcon />
               </IconButton>
-              <IconButton aria-label="gift" color="inherit">
+              <IconButton
+                aria-label="gift"
+                color="inherit"
+                onClick={handleMenu}
+              >
                 <Avatar sx={{ width: 24, height: 24 }}>R</Avatar>
               </IconButton>
             </Stack>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </Box>

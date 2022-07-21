@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Box, Card } from "@mui/material";
+import { Container } from "@mui/material";
 
 import CustomCarousel from "../components/Carousel";
 import Header from "../components/Header";
