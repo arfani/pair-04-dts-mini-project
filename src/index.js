@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./container/login";
 import Register from "./container/register";
+import DetailMovie from "./pages/DetailMovie";
+import MainPage from "./pages/Main";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -23,9 +25,10 @@ root.render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/detail/:id" element={<DetailMovie />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

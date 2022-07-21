@@ -8,8 +8,7 @@ import DetailMovie from "./pages/DetailMovie";
 function App() {
   return (
     <>
-      {/* <MainPage /> */}
-      <DetailMovie />
+      <MainPage />
     </>
   );
 }

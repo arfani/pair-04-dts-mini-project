@@ -1,6 +1,8 @@
 import React from "react";
-import { Card, Grid } from "@mui/material";
+import { Card, Grid, CardActionArea } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
+import { useNavigate } from "react-router-dom";
+
 import {
   getNowPlayingMovies,
   getNowPlayingSeries,
@@ -8,6 +10,7 @@ import {
 } from "../services/fetchMovies";
 
 export default function ListMovies({ typeMovies }) {
+  let navigate = useNavigate();
   const [movies, setMovies] = React.useState([]);
 
   React.useEffect(() => {
@@ -31,13 +34,20 @@ export default function ListMovies({ typeMovies }) {
       {movies.map((item, index) => (
         <Grid item md={2} sm={4} xs={6} key={index}>
           <Card variant="outlined">
-            <CardMedia
-              component="img"
-              alt="green iguana"
-              width="342"
-              height="400"
-              src={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
-            />
+            <CardActionArea
+              onClick={() => {
+                console.log("test");
+                navigate(`/detail/${item.id}`);
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt="green iguana"
+                width="342"
+                height="400"
+                src={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
+              />
+            </CardActionArea>
           </Card>
         </Grid>
       ))}

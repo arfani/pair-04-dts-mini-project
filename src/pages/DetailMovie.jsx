@@ -1,20 +1,20 @@
 import React from "react";
-import { Container } from "@mui/material";
-import { Card, Grid, Button } from "@mui/material";
+import { Container, Card, Grid, Button } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
+import { useParams } from "react-router-dom";
 
 import Header from "../components/Header";
 import CoverImage from "../components/CoverImage";
 import { getMovieDetail } from "../services/fetchMovies";
 
 export default function DetailMovie() {
+  let params = useParams();
   const [detail, setDetail] = React.useState({});
-
   React.useEffect(() => {
-    getMovieDetail(718789).then((data) => {
+    getMovieDetail(params.id).then((data) => {
       setDetail(data);
     });
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function DetailMovie() {
             <h3>"{detail?.tagline}"</h3>
             <h3>Duration: {detail?.runtime} Minutes</h3>
             <h3>
-              Studio:
+              Studio:{" "}
               {detail?.production_companies?.map((data) => `${data.name}, `)}
             </h3>
             <h3>Status: {detail?.status}</h3>
