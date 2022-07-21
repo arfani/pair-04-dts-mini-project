@@ -1,16 +1,18 @@
 import React from "react";
-import { Card, Grid, CardHeader } from "@mui/material";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
+import { Card, Grid, 
+  // CardHeader
+ } from "@mui/material";
+// import CardActions from "@mui/material/CardActions";
+// import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+// import Button from "@mui/material/Button";
+// import Typography from "@mui/material/Typography";
 import {
   getNowPlayingMovies,
   getNowPlayingSeries,
   getTopRatedMovies,
 } from "../services/fetchMovies";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function ListMovies({ typeMovies }) {
   const [movies, setMovies] = React.useState([]);
