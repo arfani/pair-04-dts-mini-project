@@ -7,7 +7,8 @@ import Header from "../components/Header";
 import CoverImage from "../components/CoverImage";
 import { getMovieDetail } from "../services/fetchMovies";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {auth} from '../config/firebase'
+import {auth} from '../config/firebase';
+import Footer from "../components/footer";
 
 export default function DetailMovie() {
   const navigate = useNavigate()
@@ -61,6 +62,7 @@ export default function DetailMovie() {
         </Grid>
       </CoverImage>
       <Container maxWidth="xl"></Container>
+      <Footer />
     </>
   );
 }
