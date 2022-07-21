@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../config/firebase"
 
 const theme = createTheme({
   palette: {
@@ -48,7 +49,9 @@ export default function Header() {
     setAnchorEl(null);
   };
   React.useEffect(() => {
+    
     const handleScroll = () => {
+
       const show = window.scrollY > 250;
       if (show) {
         setNavColor("rgba(20, 20, 20)");
@@ -56,12 +59,14 @@ export default function Header() {
         setNavColor("rgba(20, 20, 20, 0.5)");
       }
     };
+    
     document.addEventListener("scroll", handleScroll);
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -142,7 +147,7 @@ export default function Header() {
             >
               <MenuItem
                 onClick={() => {
-                  navigate("/login");
+                  logoutUser();
                 }}
               >
                 Log Out

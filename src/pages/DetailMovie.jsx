@@ -1,20 +1,33 @@
 import React from "react";
 import { Container, Card, Grid, Button } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Header from "../components/Header";
 import CoverImage from "../components/CoverImage";
 import { getMovieDetail } from "../services/fetchMovies";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {auth} from '../config/firebase'
 
 export default function DetailMovie() {
+  const navigate = useNavigate()
+  const [user, isLoading] = useAuthState(auth)
+
   let params = useParams();
   const [detail, setDetail] = React.useState({});
   React.useEffect(() => {
+    if (!user) {
+      console.log('user change')
+      navigate("/login")
+    }
+    if (isLoading) {
+      return
+    }
+
     getMovieDetail(params.id).then((data) => {
       setDetail(data);
     });
-  }, [params.id]);
+  }, [params.id, user, isLoading, navigate]);
 
   return (
     <>
