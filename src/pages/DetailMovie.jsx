@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import CoverImage from "../components/CoverImage";
 import { getMovieDetail } from "../services/fetchMovies";
+import Footer from "../components/footer";
 
 export default function DetailMovie() {
   let params = useParams();
@@ -48,6 +49,7 @@ export default function DetailMovie() {
         </Grid>
       </CoverImage>
       <Container maxWidth="xl"></Container>
+      <Footer />
     </>
   );
 }
