@@ -15,7 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../config/firebase"
+import { auth, logoutUser } from "../config/firebase"
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ export default function Header() {
   const navRef = React.useRef();
   navRef.current = navColor;
 
+  const [user] = useAuthState(auth)
   // const handleChange = (event) => {
   //   setAuth(event.target.checked);
   // };
@@ -147,10 +149,10 @@ export default function Header() {
             >
               <MenuItem
                 onClick={() => {
-                  logoutUser();
+                  user ? logoutUser() : navigate("/login");
                 }}
               >
-                Log Out
+                {user ? 'Logout' : 'Login'}
               </MenuItem>
             </Menu>
           </Toolbar>
