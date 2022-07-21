@@ -7,8 +7,8 @@ import {
     registerUser
 } from "../config/firebase"
 import { Telegram } from "@mui/icons-material"
-
 import { useAuthState } from "react-firebase-hooks/auth"
+import './forms.css'
 
 const Form = ({ regOrLogin }) => {
     const navigate = useNavigate()
@@ -48,26 +48,32 @@ const Form = ({ regOrLogin }) => {
 
     useEffect(
         () => {
-            if(user){
+            if (user) {
                 navigate("/")
             }
-            if(isLoading){
-                return 
+            if (isLoading) {
+                return
             }
         },
         [user, isLoading, navigate]
     )
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-            <Typography variant="h4" sx={{ mb: "1.5rem" }}>Please {regOrLogin === "login" ? "Login" : "register"}</Typography>
-            <Box component="form" sx={{ width: '300px' }}>
-                <TextField onChange={emailOnChangeHandler} id="email" type="email" variant="standard" label="Email" fullWidth />
-                <TextField onChange={passOnChangeHandler} id="password" type="password" variant="standard" label="Password" fullWidth sx={{ margin: '1rem 0 1.5rem' }} />
-                <Button onClick={submitHandler} variant="contained" endIcon={<Telegram />}>{regOrLogin === "login" ? "Login" : "Register"}</Button>
-                <Typography sx={{ mt: "1rem" }}> Or {regOrLogin === "login" ? <Link to="/register">Register</Link> : <Link to="/login">Login</Link>}</Typography>
-            </Box>
-        </Box>
+        <>
+            <div id="bg"></div>
+            <div id="fg">
+                <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+                    <Box component="form" sx={{ width: '300px' }}>
+                    <Typography variant="h4" sx={{ mb: "1.5rem", color: 'white', width: '100%' }}>Please {regOrLogin === "login" ? "Login" : "register"}</Typography>
+                        <TextField InputLabelProps={{ style: {color: '#AF0710', fontWeight: 'bold'} }} size="small" onChange={emailOnChangeHandler} id="email" type="email" variant="outlined" label="Email" inputProps={{ style: {color: '#AF0710'} }} />
+                        <TextField InputLabelProps={{ style: {color: '#AF0710', fontWeight: 'bold'} }} size="small" onChange={passOnChangeHandler} id="password" type="password" variant="outlined" label="Password"  sx={{ margin: '1rem 0 1.5rem' }} inputProps={{ style: {color: '#AF0710'} }} />
+                        <br />
+                        <Button onClick={submitHandler} variant="contained" endIcon={<Telegram />}>{regOrLogin === "login" ? "Login" : "Register"}</Button>
+                        <Typography sx={{ mt: "1rem" }}> Or {regOrLogin === "login" ? <Link to="/register">Register</Link> : <Link to="/login">Login</Link>}</Typography>
+                    </Box>
+                </Box>
+            </div>
+        </>
     )
 }
 
