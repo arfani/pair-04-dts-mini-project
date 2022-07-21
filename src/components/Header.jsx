@@ -14,6 +14,8 @@ import Avatar from "@mui/material/Avatar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { useNavigate } from "react-router-dom";
+
 const theme = createTheme({
   palette: {
     type: "light",
@@ -27,6 +29,7 @@ const theme = createTheme({
 });
 
 export default function Header() {
+  let navigate = useNavigate();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [navColor, setNavColor] = React.useState("rgba(20, 20, 20, 0.5)");
@@ -82,7 +85,13 @@ export default function Header() {
               MOVIES
             </Typography>
             <Stack direction={"row"} sx={{ flexGrow: 1 }} spacing={1}>
-              <Button sx={{ textTransform: "none" }} color="inherit">
+              <Button
+                sx={{ textTransform: "none" }}
+                color="inherit"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 Home
               </Button>
               <Button sx={{ textTransform: "none" }} color="inherit">
@@ -131,7 +140,13 @@ export default function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Log Out
+              </MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
