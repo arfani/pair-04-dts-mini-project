@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import CustomCarousel from "../components/Carousel";
 import Header from "../components/Header";
 import ListMovies from "../components/ListMovies";
+import Footer from "../components/footer";
 
 export default function MainPage() {
   return (
@@ -18,6 +19,7 @@ export default function MainPage() {
         <h1>Top Rated</h1>
         <ListMovies typeMovies="topRated" />
       </Container>
+      <Footer />
     </>
   );
 }
